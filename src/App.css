@@ -1,38 +1,114 @@
-.App {
+
+/* Navigation Style */
+.nav-bar {
+  background-color: #456682;
+  color: #D7DDEA;
+}
+.nav-bar-flex {
+  display: flex;
+}
+
+.title {
+  font-size: 32px;
+  color: #D7DDEA;
+  text-decoration: none;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.logo {
+  margin:25px;
+}
+
+.profile-logo {
+  position: absolute;
+  right: 20px;
+  margin: 20px;
+}
+
+.notifications-logo {
+  position: absolute;
+  right:80px;
+  margin: 25px;
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;  
+  width: 100%;
+  background-color: #D7DDEA;
+  color: #456682;
+  padding-left: 25px;
+}
+
+/* Home page Style */ 
+
+.filter-bar {
+  background-color: #D7DDEA;
+}
+
+.sidebar {
+  background-color: #D7DDEA;
+  height: 900px;
+}
+
+.filter-panel {
+  background-color: #D7DDEA;
+}
+
+.filter-dropdown {
+  margin-top: 10px;
+  margin-left: 50px;
+  width: 100%;
+}
+
+.data{
+    display: block;
+    margin-left: 6%;
+    margin-right: auto;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.graphs {
+  margin-left: 7%;
+  margin-top: 15px;
+}
+
+/* Sidebar */
+
+.folder-dropdown {
+  display:inline-block;
+  width: 100%;
+  background-color: white;
+  margin: 10px
+}
+
+.sidebar-links{
+  display:inline-block;
+  margin-top: 10px;
+  margin-left: 15%;
+  margin-right: 20px;
+  background-color: #D7DDEA;
+  width: 100%;
+  font-size: 24px;
+  color:#456682;
+  display: flex;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.board-logo {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.board-header {
+  margin-top: 10px;
+  font-size: 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.sidebar-links:hover {
+  background-color: white;
 }
