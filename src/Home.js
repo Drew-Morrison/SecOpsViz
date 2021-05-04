@@ -22,6 +22,7 @@ class Home extends Component {
                     <SideBar dashboards={this.state.dashboards} />
                 </Col>
                 <Col className='filter-panel'>
+                        <p className='open'> This project is transitioning to open source effective Jun 10th, 2021</p>
                     <Row>
                         <Col xs='4'> 
                         <FilterFile /> 

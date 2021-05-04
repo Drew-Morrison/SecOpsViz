@@ -112,3 +112,11 @@ footer {
 .sidebar-links:hover {
   background-color: white;
 }
+
+.open {
+  color: #456682;
+  text-align: center;
+  padding-top: 25px;
+  font-weight: bolder;
+  font-size: 24px;
+}
