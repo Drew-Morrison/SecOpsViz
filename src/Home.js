@@ -152,6 +152,7 @@ class Home extends Component {
     render() {
 
     return (
+        
         <div>
             <Row>
                 <Col xs='2' className='sidebar'>
