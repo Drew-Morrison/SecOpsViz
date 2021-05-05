@@ -1,4 +1,4 @@
-## SecOpsViz
+## SecOpsViz Mission 
 The security industry is rapidly developing and changing, creating a knowledge gap and skills shortage due to the challenging learning curve. SecOps analysts often burnout within the first 18 months of employment. Visualizations will help mitigate these issues so that security incidents are more quickly identified, investigated, and mitigated through pattern or trend anomalies.
 <br>
 Our research has shown that currently, there is no standing network protocol analysis visualization tool for SecOps teams to leverage during the incident response process. Instead they must rely on asking other analysts or Wireshark’s I/O Graphics feature which requires a robust learning curve and is visually unhelpful. Additionally, visualizations help expedite the speed of identifying security gaps that may have been missed or taken a significant amount of time to come across. Analysts and students also often struggle with the overwhelming amount of data typical network analysis tools display which in turn contributes to a time consuming onboarding process and learning curve.
