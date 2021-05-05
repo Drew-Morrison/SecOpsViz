@@ -1,7 +1,7 @@
 
 /* Navigation Style */
 .nav-bar {
-  background-color: #456682;
+  background-color: #201F21;
   color: #D7DDEA;
 }
 .nav-bar-flex {
@@ -32,35 +32,47 @@
   margin: 25px;
 }
 
+.info-logo {
+  position: absolute;
+  right: 140px;
+  margin: 25px
+}
+
 footer {
   position: fixed;
   left: 0;
   bottom: 0;  
   width: 100%;
-  background-color: #D7DDEA;
-  color: #456682;
+  background-color: #201F21;
+  color: #8CCCE5;
   padding-left: 25px;
+}
+
+.footer_text {
+  padding-top: 20px;
 }
 
 /* Home page Style */ 
 
 .filter-bar {
-  background-color: #D7DDEA;
+  background-color: #A9A9A9;
 }
 
 .sidebar {
-  background-color: #D7DDEA;
+  background-color: white;
   height: 900px;
+  color: #8CCCE5;
 }
 
 .filter-panel {
-  background-color: #D7DDEA;
+  background-color: white;
 }
 
 .filter-dropdown {
   margin-top: 10px;
   margin-left: 50px;
   width: 100%;
+  color: black;
 }
 
 .data{
@@ -90,12 +102,15 @@ footer {
   margin-top: 10px;
   margin-left: 15%;
   margin-right: 20px;
-  background-color: #D7DDEA;
+  background-color: #f5f5f5;;
+  border-width: 5px;
+  border-color: #8CCCE5;
   width: 100%;
   font-size: 24px;
-  color:#456682;
+  color:#201F21;
   display: flex;
   text-align: center;
+  border-radius: 5px;
 }
 
 .board-logo {
@@ -111,6 +126,7 @@ footer {
 
 .sidebar-links:hover {
   background-color: white;
+  color: black;
 }
 
 .open {
@@ -119,4 +135,47 @@ footer {
   padding-top: 25px;
   font-weight: bolder;
   font-size: 24px;
+}
+
+/* Info page */ 
+
+.info_page {
+  margin: 50px;
+}
+
+.team {
+  margin: 100px;
+}
+
+.photo {
+  text-align: center;
+}
+
+/* Table */ 
+
+table {
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border: 1px solid #ddd;
+  font-size: 10px;
+  cursor: pointer;
+  height: 10px;
+}
+
+th {
+  background-color: #cae8f3;
+  border: 1px solid #ddd;
+  position: sticky;
+  top: 0;
+}
+
+tr:hover {background-color:#f5f5f5;}
+
+.data {
+  height: 400px;
+  overflow: scroll;
 }
