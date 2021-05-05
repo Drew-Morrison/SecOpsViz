@@ -1,70 +1,11 @@
-# Getting Started with Create React App
+## SecOpsViz Mission 
+The security industry is rapidly developing and changing, creating a knowledge gap and skills shortage due to the challenging learning curve. SecOps analysts often burnout within the first 18 months of employment. Visualizations will help mitigate these issues so that security incidents are more quickly identified, investigated, and mitigated through pattern or trend anomalies.
+<br>
+Our research has shown that currently, there is no standing network protocol analysis visualization tool for SecOps teams to leverage during the incident response process. Instead they must rely on asking other analysts or Wireshark’s I/O Graphics feature which requires a robust learning curve and is visually unhelpful. Additionally, visualizations help expedite the speed of identifying security gaps that may have been missed or taken a significant amount of time to come across. Analysts and students also often struggle with the overwhelming amount of data typical network analysis tools display which in turn contributes to a time consuming onboarding process and learning curve.
+<br>
+The SecOps Visualization tool will allow SecOps analysts to read and dynamically visualize packet logs leading to faster identification, investigation, and mitigation KPI’s. Analysts may use visualizations to add meaning to documentation, present to execs, and onboard employees. Professors may use visualizations to better teach students what an incident may look like through the lens of a network protocol analyzation tool.  
+<br>
+The design of the SecOps visualization tool includes a raw data dashboard and two visualizations for port traffic and network connections. The analysts have easy access to filter down through the raw data dashboard before investigating further events through the visualizations.
+<li> The SecOps visualization tool is coded in D3 v6 and Javascript.
+Next steps for this project include increasing the number of visualizations available to users, like a geographic map of ip address locations and ports. 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
