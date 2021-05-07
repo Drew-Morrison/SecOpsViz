@@ -1,0 +1,44 @@
+table {
+  /* font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; */
+  border-collapse: collapse;
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+}
+
+table td,
+table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+table tr:hover {
+  background-color: #ddd;
+}
+
+table th, tfoot td {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #456682;
+  color: white;
+}
+
+tbody {
+    display: block;
+    height: 100%;
+    overflow: scroll;
+}
+
+thead, tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+thead {
+    width: calc( 100% - 1em )
+}
