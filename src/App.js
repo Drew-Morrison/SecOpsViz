@@ -12,6 +12,7 @@ import HomePage from "./Home";
 import InfoPage from "./info";
 import Navigation from "./Components/Navigation";
 import HostComVizPage from "./Components/HostComVizPage";
+import PortTrafficVizPage from "./Components/PortTrafficVizPage";
 
 class App extends Component {
   constructor(props) {
@@ -33,6 +34,13 @@ class App extends Component {
               exact
               path="/hostcomvizpage"
               children={<HostComVizPage dashboards={this.state.dashboards} />}
+            />
+            <Route
+              exact
+              path="/porttrafficvizpage"
+              children={
+                <PortTrafficVizPage dashboards={this.state.dashboards} />
+              }
             />
             <Redirect to="/home" component={HomePage} />
           </Switch>
