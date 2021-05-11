@@ -1,8 +1,9 @@
 import React, { Component, useState } from 'react';
 import { Row, Col, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { BrowserRouter as Router, Route, Switch, Redirect, Link } from "react-router-dom";
 import * as d3 from "d3";
+import SideBar from './Components/SideBar'
 import './App.css';
-
 
 class Home extends Component {
 
@@ -329,54 +330,24 @@ const Table = ({data}) => {
     );
   }
 
-  const SideBar = ({ dashboards }) => {
-    const dashboard_array = [];
-    dashboards.forEach((board) => {
-      dashboard_array.push (
-        <div className='sidebar-links' key={board}>
-          <img src="img/icon.jpg" alt='Dashboard logo' width='25px' height='25px' className='board-logo' />
-          <h2 className='board-header'> {board} </h2>
-        </div>
-      )
-    })
-  
-  
-    return (
-      <div className='row'> 
-          <div className='side-col'>
-            {dashboard_array}
-            {/* <div className='sidebar-links' key='DanTest'>
-              <img src="img/icon.jpg" alt='Dashboard logo' width='25px' height='25px' className='board-logo' />
-              <h2 className='board-header'> 
-                <Link to="/hostcomvizpage">Test</Link>
-              </h2>
-            </div>
-  
-            <div className='sidebar-links' key='DanTest'>
-              <img src="img/icon.jpg" alt='Dashboard logo' width='25px' height='25px' className='board-logo' />
-              <h2 className='board-header'> 
-                <Link to="/devdestress">DESTRESS</Link>
-              </h2>
-            </div> */}
-        </div>
-      </div>
-    )
-  }
-
   const RenderGraphs = (props) => {
   
     return (
-      <div className='graphs'>
-          <Row>
-              <Col xs='6'>
-                  <a href='https://observablehq.com/@alicezhu11/pcap'>
-                <img src='img/porttraffic.jpeg' width='75%'/>
-                </a>
-              </Col>
-              <Col xs='6'>
-                <img src='img/hostcommunication.jpeg' width='75%'/>
-              </Col>
-          </Row>
+      <div className="graphs">
+        <Row>
+          <Col xs="6">
+            {/* <a href="https://observablehq.com/@alicezhu11/pcap"> */}
+            <Link to="/porttrafficvizpage">
+              <img src="img/porttraffic.jpeg" width="75%" />
+            </Link>
+            {/* </a> */}
+          </Col>
+          <Col xs="6">
+            <Link to="/hostcomvizpage">
+              <img src="img/hostcommunication.jpeg" width="75%" />
+            </Link>
+          </Col>
+        </Row>
       </div>
     );
   }
