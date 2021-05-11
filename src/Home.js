@@ -152,7 +152,7 @@ class Home extends Component {
     render() {
 
     return (
-        
+
         <div>
             <Row>
                 <Col xs='2' className='sidebar'>
@@ -190,12 +190,16 @@ const Table = ({data}) => {
     // Filter IP
     const [srcIP, setSrcIP] = useState('');
     const [destIP, setDestIP] = useState('');
+    const [prot, setProt] = useState('');
     var filterip =  data.filter(function(src) {
         if (srcIP !== ''){
             return src.source == srcIP;
         } 
         else if (destIP !== '') {
             return src.dest == destIP
+        }
+        else if (prot !== '') {
+            return  src.prot === prot
         }
         else {
             return data
@@ -210,7 +214,7 @@ const Table = ({data}) => {
                     <td> {request['time']} </td>
                     <td onClick={() => setSrcIP(request['source'])}> {request['source']} </td>
                     <td onClick={() => setDestIP(request['dest'])}> {request['dest']} </td>
-                    <td> {request['prot']} </td>
+                    <td onClick={() => setProt(request['prot'])}> {request['prot']} </td>
                     <td> {request['length']} </td>
                     <td> {request['info']} </td>
                 </tr>
@@ -226,7 +230,7 @@ const Table = ({data}) => {
                 <th> Time </th>
                 <th onClick={() => setSrcIP('')}> Source </th>
                 <th onClick={() => setDestIP('')}> Destination </th>
-                <th> Protocol </th>
+                <th onClick={() => setProt('')}> Protocol </th>
                 <th> Length </th>
                 <th> Info </th>
             </tr>
