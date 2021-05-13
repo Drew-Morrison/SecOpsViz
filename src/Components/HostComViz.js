@@ -176,7 +176,7 @@ const HostComViz = ({ setIPs }) => {
         .enter()
         .append("g")
         .attr("class", "node")
-        .on("click", nodeClick)
+        .on("dblclick", nodeClick)
         .call(
           d3
             .drag()
@@ -286,6 +286,7 @@ const HostComViz = ({ setIPs }) => {
       function dragged(event, d) {
         d.fx = event.x;
         d.fy = event.y;
+        d.fixed = true;
       }
 
       function dragended(event, d) {

@@ -35,13 +35,13 @@ class App extends Component {
               path="/hostcomvizpage"
               children={<HostComVizPage dashboards={this.state.dashboards} />}
             />
-            <Route
+            {/* <Route
               exact
               path="/porttrafficvizpage"
               children={
                 <PortTrafficVizPage dashboards={this.state.dashboards} />
               }
-            />
+            /> */}
             <Redirect to="/home" component={HomePage} />
           </Switch>
         </Router>

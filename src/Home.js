@@ -333,9 +333,9 @@ const Table = ({data}) => {
         <Row>
           <Col xs="6">
             {/* <a href="https://observablehq.com/@alicezhu11/pcap"> */}
-            <Link to="/porttrafficvizpage">
+            {/* <Link to="/porttrafficvizpage"> */}
               <img src="img/porttraffic.jpeg" width="75%" />
-            </Link>
+            {/* </Link> */}
             {/* </a> */}
           </Col>
           <Col xs="6">

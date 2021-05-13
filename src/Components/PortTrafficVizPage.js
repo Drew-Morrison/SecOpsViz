@@ -12,7 +12,7 @@ import {
 } from "reactstrap";
 import { useRef, useState } from "react";
 import REE_DATA from "./test - Copy.json";
-import PortTrafficViz from "./PortTrafficViz";
+// import PortTrafficViz from "./PortTrafficViz";
 
 const PortTrafficVizPage = ({ dashboards }) => {
   const [ips, setIps] = useState(REE_DATA);
@@ -38,7 +38,7 @@ const PortTrafficVizPage = ({ dashboards }) => {
               <FilterPcap />
             </Col>
           </Row>
-          <PortTrafficViz data={REE_DATA} />
+          {/* <PortTrafficViz data={REE_DATA} /> */}
         </Col>
       </Row>
     </div>
