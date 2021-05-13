@@ -127,7 +127,6 @@ const HostComViz = ({ setIPs }) => {
         obj.totalcomm = obj.weight;
         obj.weight = x(obj.weight);
       });
-
       createForceNetwork(nodes, edges);
     };
 
