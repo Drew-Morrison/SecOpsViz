@@ -12,15 +12,20 @@ const PortTrafficViz = (data) => {
     var margin = { top: 10, right: 0, bottom: 40, left: 200 };
     const width = wrapperRef.current.clientWidth,
       height = wrapperRef.current.clientHeight;
+    console.log(data.data)
+    let timeArray = data.data.map(result => result._source.layers.frame["frame.time_relative"])
 
     const x_scale = d3
       .scaleLinear()
-      .domain([d3.min(data, (d) => d.Time), d3.max(data, (d) => d.Time)])
+      .domain([d3.min(timeArray), d3.max(timeArray)])
       .range([margin.left, width - margin.right]);
 
+    // console.log(d3.min(data, (d) => d._source.layers.frame["frame.time_relative"]))
+
+    let lenArray = data.data.map(result => result._source.layers.tcp["tcp.len"])
     const y_scale = d3
       .scaleLinear()
-      .domain([0, d3.min(data, (d) => d.Length)])
+      .domain([0, d3.max(lenArray)])
       .range([height - margin.bottom, margin.top]);
 
     const xAxis = (g) =>
@@ -80,7 +85,7 @@ const PortTrafficViz = (data) => {
 
     svg
       .append("path")
-      .datum(source_ip_data)
+      .datum(data)
       .attr("stroke", "#FF687E")
       .attr("fill", "none")
       .attr("stroke-width", 2)
@@ -118,39 +123,64 @@ const PortTrafficViz = (data) => {
       .attr("x", -height / 1.7)
       .attr("y", 15)
       .attr("transform", "rotate(-90)");
+    
+    console.log('hi')
+    // svg
+    //   .append("path")
+    //   .datum(data)
+    //   .attr("stroke", "#FF687E")
+    //   .attr("fill", "none")
+    //   .attr("stroke-width", 2)
+    //   .attr(
+    //     "d",
+    //     d3
+    //       .line()
+    //       .x((d) => console.log('hi'))
+    //       // .x((d) => x_scale(+d.Time))
+    //       .y((d) => y_scale(+d.Length))
+    //   );
+      const nodeEnter = svg
+        .selectAll("g.node")
+        .data(data)
+        .enter()
+        .append("g")
+        .attr("class", "node")
+        .attr('x', 200)
+        .attr('y', 300)
+        // .on("click", nodeClick)
+        // .call(
+        //   d3
+        //     .drag()
+        //     .on("start", dragstarted)
+        //     .on("drag", dragged)
+        //     .on("end", dragended)
+        // );
 
-    svg
-      .append("path")
-      .datum(source_ip_data)
-      .attr("stroke", "#FF687E")
-      .attr("fill", "none")
-      .attr("stroke-width", 2)
-      .attr(
-        "d",
-        d3
-          .line()
-          .x((d) => x_scale(+d.Time))
-          .y((d) => y_scale(+d.Length))
-      );
+      nodeEnter
+        .append("circle")
+        .attr("fill", "#9ED2FF")
+        .attr("r", 5)
+        // .on("mouseover", tooltiphere)
+        // .on("mouseout", tooltipbye);
 
     svg
       .append("g")
       .selectAll("circle")
-      .data(source_ip_data)
+      .data(data)
       .join("circle")
-      .attr("cx", (d) => x_scale(+d.Time))
-      .attr("cy", (d) => y_scale(+d.Length))
+      .attr("x", (d) => x_scale(+d._source.layers.frame["frame.time_relative"]))
+      .attr("y", (d) => y_scale(+d._source.layers.tcp["tcp.len"]))
       .attr("r", 3)
       .attr("fill", "#FF687E");
-    svg
-      .append("g")
-      .selectAll("circle")
-      .data(source_ip_data)
-      .join("circle")
-      .attr("cx", (d) => x_scale(+d.Time))
-      .attr("cy", (d) => y_scale(+d.Length))
-      .attr("r", 3)
-      .attr("fill", "#FF687E");
+    // svg
+    //   .append("g")
+    //   .selectAll("circle")
+    //   .data(data)
+    //   .join("circle")
+    //   .attr("cx", (d) => x_scale(+d.Time))
+    //   .attr("cy", (d) => y_scale(+d.Length))
+    //   .attr("r", 3)
+    //   .attr("fill", "#FF687E");
   }, [data]);
 
   return (

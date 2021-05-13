@@ -1,1 +1,6 @@
-{}
+{
+  "projects": {
+    "secopsviz": "secopsviz-8cc53",
+    "few": "secopsviz-8cc53"
+  }
+}
