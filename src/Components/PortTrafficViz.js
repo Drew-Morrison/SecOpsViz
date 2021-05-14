@@ -232,8 +232,14 @@ const PortTrafficViz = ({ setIPs, data }) => {
           .x((d) => x_scale(d._source.layers.frame["frame.time_relative"]))
           .y((d) => y_scale(d._source.layers.tcp["tcp.len"]))(d[1]);
       })
-      .on("mouseover", tooltiphere)
-      .on("mouseout", tooltipbye);
+      .on("mouseover", function (event, d) {
+        tooltiphere(event, d);
+        highlightEgoNetwork(event, d);
+      })
+      .on("mouseout", function (event, d) {
+        tooltipbye(event, d);
+        reset(event, d);
+      });
 
     const nodeEnter = svg
       .selectAll("g.node")
@@ -255,8 +261,14 @@ const PortTrafficViz = ({ setIPs, data }) => {
       .append("circle")
       .attr("fill", "steelblue")
       .attr("r", 5)
-      .on("mouseover", tooltiphere)
-      .on("mouseout", tooltipbye);
+      .on("mouseover", function(event, d) {
+        tooltiphere(event, d)
+        highlightEgoNetwork(event, d)
+      })
+      .on("mouseout", function(event, d) {
+        tooltipbye(event, d)
+        reset(event, d)
+      });
 
     function tooltiphere(event, d) {
       if (!d.tooltip) {
@@ -316,9 +328,28 @@ const PortTrafficViz = ({ setIPs, data }) => {
       );
     }
 
-    function tooltipbye(d) {
+    function tooltipbye(event, d) {
       tooltip.transition().duration(0).style("opacity", 0);
       tooltip.html("");
+    }
+
+    function highlightEgoNetwork(event, d) {
+      d3.selectAll("path")
+        .filter(function (p) {
+          return d.port != p[0]
+        })
+        .attr("stroke", "lightgray");
+
+      d3.selectAll("circle")
+        .filter(function (p) {
+          return d.filteredEdges.indexOf(p) === -1;
+        })
+        .attr("fill", "lightgray");
+    }
+
+    function reset(event, d) {
+      d3.selectAll("path").attr("stroke", (p) => colorScale(p[0]));
+      d3.selectAll("circle").attr("fill", "steelblue")
     }
   }, [data]);
 
