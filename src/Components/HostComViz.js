@@ -10,6 +10,8 @@ const HostComViz = ({ setIPs }) => {
   useEffect(() => {
     const width = wrapperRef.current.clientWidth,
       height = wrapperRef.current.clientHeight;
+
+    d3.selectAll("svg > *").remove();
     const svg = d3
       .select(svgRef.current)
       .attr("width", width)
@@ -167,7 +169,7 @@ const HostComViz = ({ setIPs }) => {
         .style("stroke-width", "1px")
         .style("stroke", "#456682")
         .on("mouseover", tooltiphere)
-        .on("click", d => setIPs(d.filtered_edges))
+        .on("click", (event, d) => setIPs(d.filtered_edges))
         .on("mouseout", tooltipbye);
 
       const nodeEnter = svg
@@ -190,7 +192,7 @@ const HostComViz = ({ setIPs }) => {
         .attr("fill", "#9ED2FF")
         .attr("r", 5)
         .on("mouseover", tooltiphere)
-        .on("click", d => setIPs(d.filtered_edges))
+        .on("click", (event, d) => setIPs(d.filtered_edges))
         .on("mouseout", tooltipbye);
 
       nodeEnter

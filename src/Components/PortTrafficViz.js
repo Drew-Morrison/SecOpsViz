@@ -309,7 +309,7 @@ const PortTrafficViz = ({ setIPs, data }) => {
         tooltip.transition().duration(200).style("opacity", 1);
 
         tooltip
-          .style("left", event.screenX + 10 + "px")
+          .style("left", event.screenX - 250 + "px")
           .style("top", event.screenY - 180 + "px");
         tooltip.html(
           "<p>" +
