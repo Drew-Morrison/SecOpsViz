@@ -13,6 +13,8 @@ const PortTrafficViz = ({ setIPs, data }) => {
     var margin = { top: 10, right: 50, bottom: 40, left: 200 };
     const width = wrapperRef.current.clientWidth,
       height = wrapperRef.current.clientHeight;
+    let lookedAt = data;
+    let resetter = null;
     let timeArray = data.map(
       (result) => result._source.layers.frame["frame.time_relative"]
     );
@@ -47,14 +49,7 @@ const PortTrafficViz = ({ setIPs, data }) => {
     const svg = d3
       .select(svgRef.current)
       .attr("width", width)
-      .attr("height", height)
-      .call(
-        d3.zoom().on("zoom", function (event, d) {
-          svg.attr("transform", event.transform);
-        })
-      )
-      .on("dblclick.zoom", null)
-      .append("g");
+      .attr("height", height);
 
     const tooltip = d3.select(tooltipRef.current);
 
@@ -224,7 +219,7 @@ const PortTrafficViz = ({ setIPs, data }) => {
       .data(groups)
       .join("path")
       .attr("fill", "none")
-      .attr("stroke-width", 2.5)
+      .attr("stroke-width", 5)
       .attr("stroke", (d) => colorScale(d[0]))
       .attr("d", (d) => {
         return d3
@@ -232,13 +227,19 @@ const PortTrafficViz = ({ setIPs, data }) => {
           .x((d) => x_scale(d._source.layers.frame["frame.time_relative"]))
           .y((d) => y_scale(d._source.layers.tcp["tcp.len"]))(d[1]);
       })
-      .on("mouseover", function (event, d) {
-        tooltiphere(event, d);
-        highlightEgoNetwork(event, d);
+      .on("mouseover", tooltiphere)
+      .on("click", function (event, d) {
+        if (resetter != d.port) {
+          resetter = d.port;
+          highlightEgoNetwork(event, d);
+        } else {
+          resetter = null;
+          reset(event, d);
+          lookedAt = data;
+        }
       })
       .on("mouseout", function (event, d) {
         tooltipbye(event, d);
-        reset(event, d);
       });
 
     const nodeEnter = svg
@@ -260,14 +261,20 @@ const PortTrafficViz = ({ setIPs, data }) => {
     nodeEnter
       .append("circle")
       .attr("fill", "steelblue")
-      .attr("r", 5)
-      .on("mouseover", function(event, d) {
-        tooltiphere(event, d)
-        highlightEgoNetwork(event, d)
+      .attr("r", 10)
+      .on("mouseover", tooltiphere)
+      .on("click", function (event, d) {
+        if (resetter != d.port) {
+          resetter = d.port;
+          highlightEgoNetwork(event, d);
+        } else {
+          resetter = null;
+          reset(event, d);
+          lookedAt = data;
+        }
       })
-      .on("mouseout", function(event, d) {
-        tooltipbye(event, d)
-        reset(event, d)
+      .on("mouseout", function (event, d) {
+        tooltipbye(event, d);
       });
 
     function tooltiphere(event, d) {
@@ -275,7 +282,7 @@ const PortTrafficViz = ({ setIPs, data }) => {
         d.totalbytes = 0;
         let filteredEdges = null;
         if (Array.isArray(d)) {
-          d.port = d[0]
+          d.port = d[0];
           filteredEdges = d[1];
         } else {
           d.port =
@@ -298,34 +305,35 @@ const PortTrafficViz = ({ setIPs, data }) => {
         d.filteredEdges = filteredEdges;
         d.totalcomm = filteredEdges.length;
       }
-      setIPs(d.filteredEdges);
-      tooltip.transition().duration(200).style("opacity", 1);
+      if (d.filteredEdges.every((elem) => lookedAt.includes(elem))) {
+        tooltip.transition().duration(200).style("opacity", 1);
 
-      tooltip
-        .style("left", event.screenX - 250 + "px")
-        .style("top", event.screenY - 180 + "px");
-      tooltip.html(
-        "<p>" +
-        "Port Number: " +
-        d.port +
-        "</p>" +
-        "<p id='comm'>" +
-          "Total Communications: " +
-          d.totalcomm +
-          "</p>" +
+        tooltip
+          .style("left", event.screenX + 10 + "px")
+          .style("top", event.screenY - 180 + "px");
+        tooltip.html(
           "<p>" +
-          "Total Bytes Transferred: " +
-          d.totalbytes +
-          "</p>" +
-          "<p>" +
-          "Average Byte Transfer: " +
-          Math.round(d.totalbytes / d.totalcomm) +
-          "</p>" +
-          "<p>" +
-          "Largest Transfer: " +
-          d.largestTran +
-          "</p>"
-      );
+            "Port Number: " +
+            d.port +
+            "</p>" +
+            "<p id='comm'>" +
+            "Total Communications: " +
+            d.totalcomm +
+            "</p>" +
+            "<p>" +
+            "Total Bytes Transferred: " +
+            d.totalbytes +
+            "</p>" +
+            "<p>" +
+            "Average Byte Transfer: " +
+            Math.round(d.totalbytes / d.totalcomm) +
+            "</p>" +
+            "<p>" +
+            "Largest Transfer: " +
+            d.largestTran +
+            "</p>"
+        );
+      }
     }
 
     function tooltipbye(event, d) {
@@ -336,20 +344,34 @@ const PortTrafficViz = ({ setIPs, data }) => {
     function highlightEgoNetwork(event, d) {
       d3.selectAll("path")
         .filter(function (p) {
-          return d.port != p[0]
+          return d.port != p[0];
         })
         .attr("stroke", "lightgray");
+
+      d3.selectAll("path")
+        .filter(function (p) {
+          return d.port === p[0];
+        })
+        .attr("stroke", (p) => colorScale(p[0]));
 
       d3.selectAll("circle")
         .filter(function (p) {
           return d.filteredEdges.indexOf(p) === -1;
         })
         .attr("fill", "lightgray");
+
+      d3.selectAll("circle")
+        .filter(function (p) {
+          return d.filteredEdges.indexOf(p) != -1;
+        })
+        .attr("fill", "steelblue");
+      setIPs(d.filteredEdges);
+      lookedAt = d.filteredEdges;
     }
 
     function reset(event, d) {
       d3.selectAll("path").attr("stroke", (p) => colorScale(p[0]));
-      d3.selectAll("circle").attr("fill", "steelblue")
+      d3.selectAll("circle").attr("fill", "steelblue");
     }
   }, [data]);
 
