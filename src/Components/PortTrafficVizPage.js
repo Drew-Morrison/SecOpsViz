@@ -1,6 +1,7 @@
 import SideBar from "./SideBar";
 // import data from "./data.csv";
 import { Link } from "react-router-dom";
+import data from "./test.json"
 
 import {
   Row,
@@ -12,7 +13,8 @@ import {
 } from "reactstrap";
 import { useRef, useState } from "react";
 import REE_DATA from "./test - Copy.json";
-// import PortTrafficViz from "./PortTrafficViz";
+import PortTrafficViz from "./PortTrafficViz";
+import MoreDeets from "./MoreDeets";
 
 const PortTrafficVizPage = ({ dashboards }) => {
   const [ips, setIps] = useState(REE_DATA);
@@ -38,7 +40,8 @@ const PortTrafficVizPage = ({ dashboards }) => {
               <FilterPcap />
             </Col>
           </Row>
-          {/* <PortTrafficViz data={REE_DATA} /> */}
+          <PortTrafficViz data={data} />
+          <MoreDeets DATA={ips} />
         </Col>
       </Row>
     </div>

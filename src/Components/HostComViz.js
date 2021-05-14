@@ -158,7 +158,7 @@ const HostComViz = ({ setIPs }) => {
         .force("charge", d3.forceManyBody().strength(-5000));
 
       force.on("tick", updateNetwork);
-
+      console.log(nodes)
       svg
         .selectAll("line")
         .data(edges)

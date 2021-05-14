@@ -336,11 +336,11 @@ const Table = ({data}) => {
       <div className="graphs">
         <Row>
           <Col xs="6">
-            {/* <a href="https://observablehq.com/@alicezhu11/pcap"> */}
-            {/* <Link to="/porttrafficvizpage"> */}
+            <a href="https://observablehq.com/@alicezhu11/pcap">
+            <Link to="/porttrafficvizpage">
               <img src="img/porttraffic.jpeg" width="75%" />
-            {/* </Link> */}
-            {/* </a> */}
+            </Link>
+            </a>
           </Col>
           <Col xs="6">
             <Link to="/hostcomvizpage">
