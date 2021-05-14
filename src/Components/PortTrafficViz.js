@@ -10,7 +10,7 @@ const PortTrafficViz = ({ setIPs, data }) => {
   const srcip = "192.168.1.21";
 
   useEffect(() => {
-    var margin = { top: 10, right: 50, bottom: 40, left: 200 };
+    var margin = { top: 10, right: 300, bottom: 60, left: 100 };
     const width = wrapperRef.current.clientWidth,
       height = wrapperRef.current.clientHeight;
     let lookedAt = data;
@@ -85,7 +85,7 @@ const PortTrafficViz = ({ setIPs, data }) => {
       .style("font-weight", "bold")
       .style("font-family", "sans-serif")
       .attr("x", width / 2)
-      .attr("y", height);
+      .attr("y", height - 10);
 
     svg
       .append("text")
