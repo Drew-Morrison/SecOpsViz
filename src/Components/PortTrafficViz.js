@@ -3,7 +3,7 @@ import { useRef, useEffect, useState } from "react";
 import * as d3 from "d3";
 import "../App.css";
 
-const PortTrafficViz = (data) => {
+const PortTrafficViz = ({ setIPs, data }) => {
   const svgRef = useRef();
   const wrapperRef = useRef();
   const tooltipRef = useRef();
@@ -13,9 +13,7 @@ const PortTrafficViz = (data) => {
     var margin = { top: 10, right: 50, bottom: 40, left: 200 };
     const width = wrapperRef.current.clientWidth,
       height = wrapperRef.current.clientHeight;
-    console.log(data.data);
-    let dat = data.data;
-    let timeArray = data.data.map(
+    let timeArray = data.map(
       (result) => result._source.layers.frame["frame.time_relative"]
     );
 
@@ -24,8 +22,8 @@ const PortTrafficViz = (data) => {
       .domain([d3.min(timeArray), d3.max(timeArray)])
       .range([margin.left, width - margin.right]);
 
-    let lenArray = data.data.map(
-      (result) => parseInt(result._source.layers.tcp["tcp.len"])
+    let lenArray = data.map((result) =>
+      parseInt(result._source.layers.tcp["tcp.len"])
     );
 
     const y_scale = d3
@@ -104,7 +102,7 @@ const PortTrafficViz = (data) => {
       .attr("y", 15)
       .attr("transform", "rotate(-90)");
 
-    let groups = d3.group(dat, (d) =>
+    let groups = d3.group(data, (d) =>
       d._source.layers.ip["ip.src"] === srcip
         ? d._source.layers.tcp["tcp.srcport"]
         : d._source.layers.tcp["tcp.dstport"]
@@ -226,19 +224,20 @@ const PortTrafficViz = (data) => {
       .data(groups)
       .join("path")
       .attr("fill", "none")
-      .attr("stroke-width", 2)
+      .attr("stroke-width", 2.5)
       .attr("stroke", (d) => colorScale(d[0]))
-      .attr("d", d => {
+      .attr("d", (d) => {
         return d3
           .line()
-          .x(d => x_scale(d._source.layers.frame["frame.time_relative"]))
-          .y(d => y_scale(d._source.layers.tcp["tcp.len"]))
-          (d[1])
-      });
+          .x((d) => x_scale(d._source.layers.frame["frame.time_relative"]))
+          .y((d) => y_scale(d._source.layers.tcp["tcp.len"]))(d[1]);
+      })
+      .on("mouseover", tooltiphere)
+      .on("mouseout", tooltipbye);
 
     const nodeEnter = svg
       .selectAll("g.node")
-      .data(dat)
+      .data(data)
       .enter()
       .append("g")
       .attr("class", "node")
@@ -252,48 +251,52 @@ const PortTrafficViz = (data) => {
         );
       });
 
-    nodeEnter.append("circle").attr("fill", "#9ED2FF").attr("r", 5);
+    nodeEnter
+      .append("circle")
+      .attr("fill", "steelblue")
+      .attr("r", 5)
+      .on("mouseover", tooltiphere)
+      .on("mouseout", tooltipbye);
 
     function tooltiphere(event, d) {
       if (!d.tooltip) {
-        let filtered_edges = null;
-        if (d.type === "node") {
-          filtered_edges = d.edges;
+        d.totalbytes = 0;
+        let filteredEdges = null;
+        if (Array.isArray(d)) {
+          d.port = d[0]
+          filteredEdges = d[1];
         } else {
-          if (d.target.totalcomm < d.source.totalcomm) {
-            filtered_edges = d.target.edges.filter(
-              (edge) =>
-                edge._source.layers.ip["ip.dst"] === d.source.id ||
-                edge._source.layers.ip["ip.src"] === d.source.id
-            );
-          } else {
-            filtered_edges = d.source.edges.filter(
-              (edge) =>
-                edge._source.layers.ip["ip.dst"] === d.target.id ||
-                edge._source.layers.ip["ip.src"] === d.target.id
-            );
-          }
-          d.totalcomm = filtered_edges.length;
+          d.port =
+            d._source.layers.ip["ip.src"] === srcip
+              ? d._source.layers.tcp["tcp.srcport"]
+              : d._source.layers.tcp["tcp.dstport"];
+          filteredEdges = groups.get(d.port);
         }
         d.tooltip = true;
-        filtered_edges.forEach((edge) => {
+        filteredEdges.forEach((edge) => {
           d.totalbytes =
             d.totalbytes + parseInt(edge._source.layers.tcp["tcp.len"]);
         });
         d.largestTran = Math.max.apply(
           Math,
-          filtered_edges.map(function (o) {
+          filteredEdges.map(function (o) {
             return parseInt(o._source.layers.tcp["tcp.len"]);
           })
         );
-        d.filtered_edges = filtered_edges;
+        d.filteredEdges = filteredEdges;
+        d.totalcomm = filteredEdges.length;
       }
+      setIPs(d.filteredEdges);
       tooltip.transition().duration(200).style("opacity", 1);
 
       tooltip
         .style("left", event.screenX - 250 + "px")
         .style("top", event.screenY - 180 + "px");
       tooltip.html(
+        "<p>" +
+        "Port Number: " +
+        d.port +
+        "</p>" +
         "<p id='comm'>" +
           "Total Communications: " +
           d.totalcomm +

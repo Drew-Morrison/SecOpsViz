@@ -40,7 +40,7 @@ const PortTrafficVizPage = ({ dashboards }) => {
               <FilterPcap />
             </Col>
           </Row>
-          <PortTrafficViz data={data} />
+          <PortTrafficViz setIPs={(IPs) => setIps(IPs)} data={data} />
           <MoreDeets DATA={ips} />
         </Col>
       </Row>
