@@ -52,13 +52,6 @@ const MoreDeets = ({ DATA }) => {
 
   return (
     <div className="deets">
-      {/* {DATA["0"] === "-1" ? (
-        <Alert color="danger">
-          <p>reslkskljf</p>
-        </Alert>
-      ) : (
-        <MDTable DATA={DATA} COLUMNS={cols} />
-      )} */}
       <MDTable DATA={DATA} COLUMNS={cols} />
     </div>
   );

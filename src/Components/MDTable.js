@@ -34,7 +34,7 @@ const MDTable = ({ COLUMNS, DATA }) => {
             return (
               <tr {...row.getRowProps()}>
                 {row.cells[1].value === "-1" ? (
-                  <td className="alert alert-danger empty-table">Hover over a point to see additional information!</td>
+                  <td className="alert alert-danger empty-table">Click on a point to see additional information!</td>
                 ) : (
                   row.cells.map((cell) => {
                     return (

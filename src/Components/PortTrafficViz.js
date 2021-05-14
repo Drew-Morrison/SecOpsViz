@@ -25,7 +25,7 @@ const PortTrafficViz = ({ setIPs, data }) => {
       .range([margin.left, width - margin.right]);
 
     let lenArray = data.map((result) =>
-      parseInt(result._source.layers.tcp["tcp.len"])
+      parseInt(result._source.layers.frame["frame.len"])
     );
 
     const y_scale = d3
@@ -225,7 +225,7 @@ const PortTrafficViz = ({ setIPs, data }) => {
         return d3
           .line()
           .x((d) => x_scale(d._source.layers.frame["frame.time_relative"]))
-          .y((d) => y_scale(d._source.layers.tcp["tcp.len"]))(d[1]);
+          .y((d) => y_scale(d._source.layers.frame["frame.len"]))(d[1]);
       })
       .on("mouseover", tooltiphere)
       .on("click", function (event, d) {
@@ -253,7 +253,7 @@ const PortTrafficViz = ({ setIPs, data }) => {
           "translate(" +
           x_scale(d._source.layers.frame["frame.time_relative"]) +
           "," +
-          y_scale(d._source.layers.tcp["tcp.len"]) +
+          y_scale(d._source.layers.frame["frame.len"]) +
           ")"
         );
       });
@@ -294,12 +294,12 @@ const PortTrafficViz = ({ setIPs, data }) => {
         d.tooltip = true;
         filteredEdges.forEach((edge) => {
           d.totalbytes =
-            d.totalbytes + parseInt(edge._source.layers.tcp["tcp.len"]);
+            d.totalbytes + parseInt(edge._source.layers.frame["frame.len"]);
         });
         d.largestTran = Math.max.apply(
           Math,
           filteredEdges.map(function (o) {
-            return parseInt(o._source.layers.tcp["tcp.len"]);
+            return parseInt(o._source.layers.frame["frame.len"]);
           })
         );
         d.filteredEdges = filteredEdges;

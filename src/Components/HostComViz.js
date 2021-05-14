@@ -167,6 +167,7 @@ const HostComViz = ({ setIPs }) => {
         .style("stroke-width", "1px")
         .style("stroke", "#456682")
         .on("mouseover", tooltiphere)
+        .on("click", d => setIPs(d.filtered_edges))
         .on("mouseout", tooltipbye);
 
       const nodeEnter = svg
@@ -189,6 +190,7 @@ const HostComViz = ({ setIPs }) => {
         .attr("fill", "#9ED2FF")
         .attr("r", 5)
         .on("mouseover", tooltiphere)
+        .on("click", d => setIPs(d.filtered_edges))
         .on("mouseout", tooltipbye);
 
       nodeEnter
@@ -235,17 +237,17 @@ const HostComViz = ({ setIPs }) => {
           d.tooltip = true;
           filtered_edges.forEach((edge) => {
             d.totalbytes =
-              d.totalbytes + parseInt(edge._source.layers.tcp["tcp.len"]);
+              d.totalbytes + parseInt(edge._source.layers.frame["frame.len"]);
           });
           d.largestTran = Math.max.apply(
             Math,
             filtered_edges.map(function (o) {
-              return parseInt(o._source.layers.tcp["tcp.len"]);
+              return parseInt(o._source.layers.frame["frame.len"]);
             })
           );
           d.filtered_edges = filtered_edges;
         }
-        setIPs(d.filtered_edges);
+        // setIPs(d.filtered_edges);
         tooltip.transition().duration(200).style("opacity", 1);
 
         tooltip
