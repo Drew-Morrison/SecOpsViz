@@ -219,7 +219,7 @@ const PortTrafficViz = ({ setIPs, data }) => {
       .data(groups)
       .join("path")
       .attr("fill", "none")
-      .attr("stroke-width", 5)
+      .attr("stroke-width", 4)
       .attr("stroke", (d) => colorScale(d[0]))
       .attr("d", (d) => {
         return d3
@@ -261,7 +261,7 @@ const PortTrafficViz = ({ setIPs, data }) => {
     nodeEnter
       .append("circle")
       .attr("fill", "steelblue")
-      .attr("r", 10)
+      .attr("r", 7)
       .on("mouseover", tooltiphere)
       .on("click", function (event, d) {
         if (resetter != d.port) {

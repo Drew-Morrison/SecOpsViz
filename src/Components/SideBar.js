@@ -6,7 +6,7 @@ const SideBar = ({ dashboards }) => {
     dashboard_array.push(
       <div className="sidebar-links" key={board}>
         <img
-          src="img/icon.jpg"
+          src="img/icon.png"
           alt="Dashboard logo"
           width="25px"
           height="25px"

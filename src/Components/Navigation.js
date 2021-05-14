@@ -10,7 +10,7 @@ const Navigation = () => {
             className="logo"
             src="img/Logo.png"
             alt="Logo"
-            width="150px"
+            width="200px"
             height="40px"
           />{" "}
         </Link>
@@ -24,7 +24,7 @@ const Navigation = () => {
             height="35px"
           />{" "}
         </Link>
-        <img
+        {/* <img
           className="notifications-logo"
           src="img/notification.jpeg"
           alt="Notifications"
@@ -37,7 +37,7 @@ const Navigation = () => {
           alt="profile"
           width="40px"
           height="40px"
-        />
+        /> */}
       </div>
     </div>
   );
