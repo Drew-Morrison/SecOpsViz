@@ -160,7 +160,7 @@ const HostComViz = ({ setIPs }) => {
         .force("charge", d3.forceManyBody().strength(-5000));
 
       force.on("tick", updateNetwork);
-      console.log(nodes)
+      console.log(nodes);
       svg
         .selectAll("line")
         .data(edges)
@@ -253,7 +253,7 @@ const HostComViz = ({ setIPs }) => {
         tooltip.transition().duration(200).style("opacity", 1);
 
         tooltip
-          .style("left", event.screenX  - 250 + "px")
+          .style("left", event.screenX - 250 + "px")
           .style("top", event.screenY - 180 + "px");
         tooltip.html(
           "<p id='comm'>" +
