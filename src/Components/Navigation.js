@@ -30,14 +30,16 @@ const Navigation = () => {
           alt="Notifications"
           width="30px"
           height="30px"
-        />
+        /> */}
+        <Link to="/profile">
         <img
           className="profile-logo"
           src="img/profile.jpeg"
           alt="profile"
           width="40px"
           height="40px"
-        /> */}
+        /> 
+        </Link>
       </div>
     </div>
   );

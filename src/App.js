@@ -13,6 +13,7 @@ import InfoPage from "./info";
 import Navigation from "./Components/Navigation";
 import HostComVizPage from "./Components/HostComVizPage";
 import PortTrafficVizPage from "./Components/PortTrafficVizPage";
+import ProfilePage from "./profile"
 
 class App extends Component {
   constructor(props) {
@@ -30,6 +31,7 @@ class App extends Component {
           <Switch>
             <Route path="/home" component={HomePage} />
             <Route path="/info" component={InfoPage} />
+            <Route path="/profile" component={ProfilePage} />
             <Route
               exact
               path="/hostcomvizpage"

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Row, Col } from 'reactstrap';
 import './App.css';
 
 class Info extends Component {
