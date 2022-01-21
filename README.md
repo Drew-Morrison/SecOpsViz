@@ -14,9 +14,11 @@ SecOpsViz (SecViz) was created by Tanner Kooistra, Alice Zhu, Dorothy Lu, and Da
 <br>
 ## Research Review
   <br>
+  What we found for research
   <br>
 ## How to deploy the code
   <br>
+  Instructions on deploying the code
   <br>
 ## How the code was built
   <br>
