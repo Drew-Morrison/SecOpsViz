@@ -23,4 +23,4 @@ SecOpsViz (SecViz) was created by Tanner Kooistra, Alice Zhu, Dorothy Lu, and Da
   <br><br>
 ## Next steps
 ## Contact info
-Please contact the [iSchool](ischool@uw.edu)
+Please contact the [iSchool](ischool@uw.edu) for further details on this project.
