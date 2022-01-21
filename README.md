@@ -6,16 +6,20 @@ Our research has shown that currently, there is no standing network protocol ana
 The SecOps Visualization tool will allow SecOps analysts to read and dynamically visualize packet logs leading to faster identification, investigation, and mitigation KPI’s. Analysts may use visualizations to add meaning to documentation, present to execs, and onboard employees. Professors may use visualizations to better teach students what an incident may look like through the lens of a network protocol analyzation tool.  
 <br>
 The design of the SecOps visualization tool includes a raw data dashboard and two visualizations for port traffic and network connections. The analysts have easy access to filter down through the raw data dashboard before investigating further events through the visualizations.
-<li> The SecOps visualization tool is coded in D3 v6 and Javascript.
+
 Next steps for this project include increasing the number of visualizations available to users, like a geographic map of ip address locations and ports. 
 
 SecOpsViz (SecViz) was created by Tanner Kooistra, Alice Zhu, Dorothy Lu, and Dan Lu in 2021 for their capstone project at the iSchool at the University of Washington. Our mission is to improve the capabilities of SecViz and improve the UX/UI.
 <br>
 <br>
-Notes about research
+## Research Review
   <br>
   <br>
-Notes about how the code was built
+## How to deploy the code
   <br>
   <br>
-Explanation on how to deploy the code
+## How the code was built
+  <br>
+  The SecOps visualization tool is coded in D3 v6 and Javascript.
+  <br>
+## Next steps
