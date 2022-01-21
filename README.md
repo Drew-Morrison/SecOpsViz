@@ -15,13 +15,10 @@ SecOpsViz (SecViz) was created by Tanner Kooistra, Alice Zhu, Dorothy Lu, and Da
 ## Research Review
   <br>
   What we found for research
-  <br>
 ## How to deploy the code
   <br>
   Instructions on deploying the code
-  <br>
 ## How the code was built
   <br>
   The SecOps visualization tool is coded in D3 v6 and Javascript.
-  <br>
 ## Next steps
