@@ -9,7 +9,7 @@ The design of the SecOps visualization tool includes a raw data dashboard and tw
 
 Next steps for this project include increasing the number of visualizations available to users, like a geographic map of ip address locations and ports. 
 
-SecOpsViz (SecViz) was created by Tanner Kooistra, Alice Zhu, Dorothy Lu, and Dan Lu in 2021 for their capstone project at the iSchool at the University of Washington. Our mission is to improve the capabilities of SecViz and improve the UX/UI.
+SecOpsViz (SecViz) was created by Tanner Kooistra, Alice Zhu, Dorothy Lu, and Dan Lu in 2021 for their capstone project at the iSchool at the University of Washington. Our mission is to improve the capabilities of SecViz and improve the UX/UI. Our team includes Tiffany Pham, Brandon Ly, McCoy Palma, and Andrew Morrison.
 <br>
 <br>
 ## Research Review
